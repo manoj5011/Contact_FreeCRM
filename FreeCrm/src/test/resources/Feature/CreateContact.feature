@@ -18,19 +18,18 @@ Then user should see see a error message
 
 Examples:
 |first name|
-|Ram       |
+|Ravi      |
 |          |
 
-@create
-Scenario Outline: User enters valid and invalid data in the fields
-When user enters <first name> and <last name> and <email id> and <phone number> and <address_street> and <address_city> and <address_state> and <address_code> and <address_country> and <birthday_day> and <birthday_month> and <birthday_year> and click on save
-Then user should see the contact on the contacts dashboard when valid data is given
-But user should not see the contact when invalid data is given
+@create1
+Scenario: User enters valid data in the fields
+When user enters valid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save
+Then user should see the contact on the contacts dashboard
 
-Examples:
-|first name  |last name       |email id                  |phone number|address_street|address_city|address_state|address_code|address_country|birthday_day|birthday_month|birthday_year|
-|Siddarth    |Mummidi         |saimanoj@gmail.com        |9182820148  |Road no:A     |Hyderabad   |Telengana    |500089      |India          |2           |March         |2012         |
-|1234        |*(&^$725        |saimanoj                  |964263      |$%01@         |*9765       |+_987hs      |manoj       |India          |e           |March         |1929278326   |
+@create
+Scenario: User enters invalid data in the fields
+When user enters invalid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save
+Then user should not see the contact on the contacts dashboard
 
 
 @create

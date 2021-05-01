@@ -107,7 +107,7 @@ public class ContactModulePOM {
 	public void saveButton() {
 		saveButton.click();
 	}
-	public void contact() {
+	public void contactModule() {
 		contactModule.click();
 	}
 	public boolean contactCheck() {
@@ -143,8 +143,7 @@ public class ContactModulePOM {
 		birthdayDayField.sendKeys(bd);
 	}
 	public void birthdayMonthField(String bm) {
-		Select sel=new Select(birthdayMonthField);
-		sel.selectByVisibleText(bm);
+		birthdayMonthField.sendKeys(bm);
 	}
 	public void birthdayYearField(String by) {
 		birthdayYearField.sendKeys(by);
@@ -220,5 +219,5 @@ public class ContactModulePOM {
 	}
 	public void restoreSelectedButton() {
 		restoreSelectedButton.click();
-	}
+	} 
 }

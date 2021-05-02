@@ -21,6 +21,5 @@ Scenario: User does not edit any fields
 When user does not edit any field and clicks on save
 Then user should view an non edited contact 
 
-@edit
 When user does not edit any field and clicks on cancel
 Then user should see an non edited contact 

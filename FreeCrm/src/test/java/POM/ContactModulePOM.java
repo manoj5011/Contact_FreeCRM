@@ -120,8 +120,9 @@ public class ContactModulePOM {
 		phoneNoField.sendKeys(pf);
 	}
 	public void phoneNoCountry(String pc) {
-		Select sel=new Select(phoneNoCountry);
-		sel.selectByVisibleText(pc);
+//		Select sel=new Select(phoneNoCountry);
+//		sel.selectByVisibleText(pc);
+		phoneNoCountry.sendKeys(pc);
 	}
 	public void addressCityField(String ac) {
 		addressCityField.sendKeys(ac);
@@ -136,14 +137,14 @@ public class ContactModulePOM {
 		addressCodeField.sendKeys(acod);
 	}
 	public void addressCountryField(String acon) {
-		Select sel=new Select(addressCountryField);
-		sel.selectByVisibleText(acon);
+		addressCountryField.sendKeys(acon);
+
 	}
 	public void birthdayDayField(String bd) {
 		birthdayDayField.sendKeys(bd);
 	}
-	public void birthdayMonthField(String bm) {
-		birthdayMonthField.sendKeys(bm);
+	public void birthdayMonthField() {
+		birthdayMonthField.click();
 	}
 	public void birthdayYearField(String by) {
 		birthdayYearField.sendKeys(by);

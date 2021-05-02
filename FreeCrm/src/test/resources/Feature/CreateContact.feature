@@ -21,7 +21,7 @@ Examples:
 |Ravi      |
 |          |
 
-@create1
+@create
 Scenario: User enters valid data in the fields
 When user enters valid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save
 Then user should see the contact on the contacts dashboard

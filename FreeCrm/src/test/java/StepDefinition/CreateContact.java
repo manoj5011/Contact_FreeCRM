@@ -4,13 +4,17 @@ import static org.testng.Assert.assertFalse;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
+import org.apache.commons.math3.util.Precision;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -114,7 +118,8 @@ public class CreateContact {
 	@When("^user enters valid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save$")
 	public void user_enters_valid_first_name_last_name_email_id_phone_number_address_street_address_city_address_state_address_code_address_country_birthday_day_birthday_month_birthday_year_and_click_on_save()
 			throws Throwable {
-		File cred = new File("D:\\capG_projects\\Contact_FreeCRM\\FreeCrm\\src\\test\\resources\\CreateContactxlss\\validData.xlsx");
+		File cred = new File(
+				"D:\\capG_projects\\Contact_FreeCRM\\FreeCrm\\src\\test\\resources\\CreateContactxlss\\validData.xlsx");
 		FileInputStream fis = new FileInputStream(cred);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		XSSFSheet sheet1 = wb.getSheetAt(0);
@@ -122,53 +127,106 @@ public class CreateContact {
 		int rowcount = sheet1.getLastRowNum();
 
 		for (int i = 0; i <= rowcount; i++) {
-			String firstName= sheet1.getRow(i).getCell(0).getStringCellValue();
-			String lastName= sheet1.getRow(i).getCell(1).getStringCellValue();
-			String emailId= sheet1.getRow(i).getCell(2).getStringCellValue();
-                        String phoneNo= sheet1.getRow(i).getCell(3).getStringCellValue();
-                        String addressStreet= sheet1.getRow(i).getCell(4).getStringCellValue();
-                        String addressCity= sheet1.getRow(i).getCell(5).getStringCellValue();
-                        String addressState= sheet1.getRow(i).getCell(6).getStringCellValue();
-                        String addressCode= sheet1.getRow(i).getCell(7).getStringCellValue();
-                        String addressCountry= sheet1.getRow(i).getCell(8).getStringCellValue();
-                        String birthdayDay= sheet1.getRow(i).getCell(9).getStringCellValue();
-                        String birthdayMonth= sheet1.getRow(i).getCell(10).getStringCellValue();
-                        String birthdayYear= sheet1.getRow(i).getCell(11).getStringCellValue();
-      
-                WebDriverWait wait = new WebDriverWait(driver, 40);
-		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
-		cm.contactModule();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Create']")));
-		cm.createButton();
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("first_name")));
-                
-                
-		
+			String firstName = sheet1.getRow(i).getCell(0).getStringCellValue();
+			String lastName = sheet1.getRow(i).getCell(1).getStringCellValue();
+			String emailId = sheet1.getRow(i).getCell(2).getStringCellValue();
+			double phoneNo = sheet1.getRow(i).getCell(3).getNumericCellValue();
+			String phoneNumber = Double.toString(phoneNo);
+			String phoneNumberUpdated = phoneNumber.substring(0, 11);
+			String addressStreet = sheet1.getRow(i).getCell(4).getStringCellValue();
+			String addressCity = sheet1.getRow(i).getCell(5).getStringCellValue();
+			String addressState = sheet1.getRow(i).getCell(6).getStringCellValue();
+			double addressCode = sheet1.getRow(i).getCell(7).getNumericCellValue();
+			String addressCodestring = Double.toString(addressCode);
+			String addresscodeUpdated = addressCodestring.substring(0, 6);
+			String addressCountry = sheet1.getRow(i).getCell(8).getStringCellValue();
+			double birthdayDay = sheet1.getRow(i).getCell(9).getNumericCellValue();
+			String birthdayDayString = Double.toString(birthdayDay);
+			String birthdayDayUpdated = birthdayDayString.substring(0, 1);
+			String birthdayMonth = sheet1.getRow(i).getCell(10).getStringCellValue();
+			double birthdayYear = sheet1.getRow(i).getCell(11).getNumericCellValue();
+			String birthdayYearString = Double.toString(birthdayYear);
+			String birthdayYearUpdated = birthdayYearString.substring(0, 4);
+
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
+			cm.contactModule();
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Create']")));
+			cm.createButton();
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("first_name")));
+			cm.firstName(firstName);
+			cm.lastName(lastName);
+			cm.emailField(emailId);
+			cm.phoneNoCountry(addressCountry);
+			driver.findElement(By.xpath("//input[@placeholder='Number']")).sendKeys(phoneNumberUpdated);
+			cm.addressStreetField(addressStreet);
+			cm.addressCityField(addressCity);
+			cm.addressStateField(addressState);
+			driver.findElement(By.xpath("//input[@placeholder='Post Code']")).sendKeys(addresscodeUpdated);
+			// cm.addressCountryField(addressCountry);
+			cm.birthdayDayField(birthdayDayUpdated);
+			cm.birthdayMonthField();
+			wait.until(ExpectedConditions
+					.elementToBeClickable(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")));
+			driver.findElement(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")).click();
+			cm.birthdayYearField(birthdayYearUpdated);
+			cm.saveButton();
+			Thread.sleep(5000);
+			cm.contactModule();
+
 		}
 	}
 
 	@Test(priority = 6)
 	@Then("^user should see the contact on the contacts dashboard$")
 	public void user_should_see_the_contact_on_the_contacts_dashboard() throws Throwable {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText("Siddarth Sai")));
+		assert driver.findElement(By.linkText("Siddarth Sai")).isDisplayed();
+		assert driver.findElement(By.linkText("Manoj Mummidi")).isDisplayed();
 
 	}
 
-	@Ignore
 	@Test(priority = 7)
 	@When("^user enters invalid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save$")
-	public void user_enters_invalid_first_name_last_name_email_id_phone_number_address_street_address_city_address_state_address_code_address_country_birthday_day_birthday_month_birthday_year_and_click_on_save(
-			String firstName, String lastName, String emailId, String phoneNumber, String addressStreet,
-			String addressCity, String addressState, String addressCode, String addressCountry, String birthdayDay,
-			String birthdayMonth, String birthdayYear) throws Throwable {
+	public void user_enters_invalid_first_name_last_name_email_id_phone_number_address_street_address_city_address_state_address_code_address_country_birthday_day_birthday_month_birthday_year_and_click_on_save()
+			throws Throwable {
+		String Month = "March";
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
+		cm.contactModule();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Create']")));
+		cm.createButton();
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("first_name")));
+		cm.firstName("12345");
+		cm.lastName("$575^%%$#");
+		cm.emailField("saimanoj");
+		cm.phoneNoField("1234");
+		cm.addressStreetField("$%#%");
+		cm.addressCityField("*9765");
+		cm.addressStateField("+_987hs");
+		cm.birthdayDayField("e");
+		cm.birthdayMonthField();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='" + Month + "']")));
+		driver.findElement(By.xpath("//span[normalize-space()='" + Month + "']")).click();
+		cm.birthdayYearField("1234567");
+		cm.saveButton();
+		Thread.sleep(5000);
+		cm.contactModule();
 
 	}
 
-	@Ignore
 	@Test(priority = 8)
 	@Then("^user should not see the contact on the contacts dashboard$")
 	public void user_should_not_see_the_contact_on_the_contacts_dashboard() throws Throwable {
-
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText("12345 $575^%%$#")));
+		String text = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)"))
+				.getText();
+		System.out.println(text);
+		Assert.assertNotEquals(text, "12345 $575^%%$#");
 	}
 
 	@Test(priority = 9)
@@ -187,7 +245,15 @@ public class CreateContact {
 		cm.lastName(lastName);
 		cm.emailField(email);
 		cm.birthdayDayField(birthdayDay);
-		cm.birthdayMonthField(birthdayMonth);
+		cm.birthdayMonthField();
+		if (birthdayMonth == "January" || birthdayMonth == "February" || birthdayMonth == "March"
+				|| birthdayMonth == "April" || birthdayMonth == "May" || birthdayMonth == "June"
+				|| birthdayMonth == "July" || birthdayMonth == "August" || birthdayMonth == "September"
+				|| birthdayMonth == "October" || birthdayMonth == "November" || birthdayMonth == "December") {
+			wait.until(ExpectedConditions
+					.elementToBeClickable(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")));
+			driver.findElement(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")).click();
+		}
 		cm.birthdayYearField(birthdayYear);
 		cm.cancelButtonCreate();
 	}
@@ -200,7 +266,6 @@ public class CreateContact {
 				ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[normalize-space()='Create']")));
 		String url = driver.getCurrentUrl();
 		Assert.assertEquals(url, "https://ui.cogmento.com/contacts");
-		// Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
 				By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")));
 		String text = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)"))
@@ -212,6 +277,6 @@ public class CreateContact {
 
 	@After
 	public void browserClose() {
-		driver.close();
+		 driver.close();
 	}
 }

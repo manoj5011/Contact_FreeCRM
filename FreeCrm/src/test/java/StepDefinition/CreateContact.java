@@ -32,10 +32,6 @@ import cucumber.api.java.en.When;
 
 public class CreateContact {
 	WebDriver driver;
-
-//    WebDriverWait wait=new WebDriverWait(driver,30);
-//    LoginPagePOM lp=PageFactory.initElements(driver, LoginPagePOM.class);
-//    ContactModulePOM cm=PageFactory.initElements(driver, ContactModulePOM.class);
 	@Test
 	@Given("^user navigates to the login page$")
 	public void user_navigates_to_the_login_page() throws Throwable {
@@ -277,6 +273,6 @@ public class CreateContact {
 
 	@After
 	public void browserClose() {
-		 driver.close();
+		// driver.close();
 	}
 }

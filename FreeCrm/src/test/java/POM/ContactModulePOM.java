@@ -214,17 +214,15 @@ public class ContactModulePOM {
 	}
 
 	public void searchFilter(String sf) {
-		Select sel = new Select(searchFilter);
-		sel.selectByVisibleText(sf);
+		searchFilter.sendKeys(sf);
 	}
 
 	public void filterOpertator(String fo) {
-		Select sel = new Select(filterOpertator);
-		sel.selectByVisibleText(fo);
+		filterOpertator.sendKeys(fo);
 	}
 
-	public void filterValue() {
-		filterValue.click();
+	public void filterValue(String fv) {
+		filterValue.sendKeys(fv);
 	}
 
 	public void filterSearch() {

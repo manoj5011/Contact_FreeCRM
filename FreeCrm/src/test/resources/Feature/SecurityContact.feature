@@ -11,7 +11,7 @@ Then user should be able to view/access/edit/delete the contact
 Scenario: user tries to access a private contact
 Given non added user logs into the page
 When non added user ties to access a private contact
-Then user should not be able to view/access/edit/delete the contact
+Then user should not be able to view the contact
 
 @security
 Scenario: user tries to access a public contact

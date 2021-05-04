@@ -19,7 +19,7 @@ import cucumber.api.java.en.When;
 
 public class FilterContact {
 	WebDriver driver;
-	String contact1, contact2, contact3,deleteContact;
+	String contact1, contact2, contact3, deleteContact;
 
 	@Test
 	@Given("^user directs to the login page$")
@@ -244,7 +244,7 @@ public class FilterContact {
 		cm.filterValue("Ashok");
 		cm.filterSearch();
 		Thread.sleep(2000);
-		deleteContact=driver.findElement(By.cssSelector("tbody tr td:nth-child(2) a:nth-child(1)")).getText();
+		deleteContact = driver.findElement(By.cssSelector("tbody tr td:nth-child(2) a:nth-child(1)")).getText();
 		cm.checkBox1();
 		cm.actions();
 		driver.findElement(By.xpath("//span[contains(text(),'Delete')]")).click();
@@ -261,8 +261,8 @@ public class FilterContact {
 				.visibilityOfAllElementsLocatedBy(By.xpath("//p[normalize-space()='No records found']")));
 		String msg = driver.findElement(By.xpath("//p[normalize-space()='No records found']")).getText();
 		Assert.assertEquals(msg, "No records found");
-		
-		//Thread.sleep(5000);
+
+		// Thread.sleep(5000);
 		cm.recoveryBinButton();
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='main-content'] a:nth-child(1)")));
 		cm.recoveryBinContactButton();
@@ -275,7 +275,8 @@ public class FilterContact {
 
 	@After
 	public void browserClose() {
-		// driver.close();
+		if (this.driver != null)
+			driver.close();
 	}
 
 }

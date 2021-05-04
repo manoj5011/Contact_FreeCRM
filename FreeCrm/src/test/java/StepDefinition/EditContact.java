@@ -112,7 +112,7 @@ public class EditContact {
 		String editedEmailID = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(7)")).getText();
 		String editedPhoneNumber = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(6)"))
 				.getText();
-		//System.out.println("editedPhoneNumber" + editedPhoneNumber);
+		// System.out.println("editedPhoneNumber" + editedPhoneNumber);
 		Assert.assertEquals(editedEmailID, "Ashok@gmail.com");
 		Assert.assertTrue(editedPhoneNumber.contains("9347483222"));
 
@@ -125,7 +125,8 @@ public class EditContact {
 		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
 		cm.contactModule();
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+				By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")));
 		name = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")).getText();
 		emailID = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(7)")).getText();
 		phoneNumber = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(6)")).getText();
@@ -147,8 +148,9 @@ public class EditContact {
 		String editedEmailID = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(7)")).getText();
 		String editedPhoneNumber = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(6)"))
 				.getText();
-		String	editedname = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")).getText();
-		//System.out.println("editedPhoneNumber" + editedPhoneNumber);
+		String editedname = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)"))
+				.getText();
+		// System.out.println("editedPhoneNumber" + editedPhoneNumber);
 		Assert.assertEquals(editedEmailID, emailID);
 		Assert.assertTrue(editedPhoneNumber.contains(phoneNumber));
 		Assert.assertEquals(editedname, name);
@@ -162,7 +164,8 @@ public class EditContact {
 		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
 		cm.contactModule();
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")));
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+				By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")));
 		name = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")).getText();
 		emailID = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(7)")).getText();
 		phoneNumber = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(6)")).getText();
@@ -184,8 +187,9 @@ public class EditContact {
 		String editedEmailID = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(7)")).getText();
 		String editedPhoneNumber = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(6)"))
 				.getText();
-		String	editedname = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)")).getText();
-		//System.out.println("editedPhoneNumber" + editedPhoneNumber);
+		String editedname = driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(2) a:nth-child(1)"))
+				.getText();
+		// System.out.println("editedPhoneNumber" + editedPhoneNumber);
 		Assert.assertEquals(editedEmailID, emailID);
 		Assert.assertTrue(editedPhoneNumber.contains(phoneNumber));
 		Assert.assertEquals(editedname, name);
@@ -194,7 +198,8 @@ public class EditContact {
 
 	@After
 	public void browserClose() {
-		// driver.close();
+		if (this.driver != null)
+			driver.close();
 	}
 
 }

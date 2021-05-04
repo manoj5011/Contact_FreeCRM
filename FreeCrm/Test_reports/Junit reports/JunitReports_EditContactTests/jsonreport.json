@@ -1,0 +1,405 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "User should be Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 3253795000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "user goes to the login page",
+            "match": {
+              "location": "EditContact.user_goes_to_the_login_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1247486501,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "user enters username and password",
+            "match": {
+              "location": "EditContact.user_enters_username_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1171292900,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "user should login",
+            "match": {
+              "location": "EditContact.user_should_login()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 10,
+        "name": "User edits the required fields",
+        "description": "",
+        "id": "edit-a-contact;user-edits-the-required-fields",
+        "after": [
+          {
+            "result": {
+              "duration": 113400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CreateContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 49100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "RecoveryContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 20901,
+              "status": "passed"
+            },
+            "match": {
+              "location": "EditContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 63400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "DeleteContact.browserClose()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 10189433700,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "user edits required fields and clicks on save",
+            "match": {
+              "location": "EditContact.user_edits_required_fields_and_clicks_on_save()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 712285201,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "user should see an edited contact",
+            "match": {
+              "location": "EditContact.user_should_see_an_edited_contact()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 9,
+            "name": "@edit"
+          }
+        ]
+      },
+      {
+        "line": 4,
+        "name": "User should be Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 1978603699,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "user goes to the login page",
+            "match": {
+              "location": "EditContact.user_goes_to_the_login_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1889106301,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "user enters username and password",
+            "match": {
+              "location": "EditContact.user_enters_username_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1507751700,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "user should login",
+            "match": {
+              "location": "EditContact.user_should_login()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 15,
+        "name": "User edits non required fields",
+        "description": "",
+        "id": "edit-a-contact;user-edits-non-required-fields",
+        "after": [
+          {
+            "result": {
+              "duration": 65400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CreateContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 72300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "RecoveryContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 37100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "EditContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 51001,
+              "status": "passed"
+            },
+            "match": {
+              "location": "DeleteContact.browserClose()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 12325791701,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "user edits non required fields and clicks on save",
+            "match": {
+              "location": "EditContact.user_edits_non_required_fields_and_clicks_on_save()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 683827900,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "user should view an edited contact",
+            "match": {
+              "location": "EditContact.user_should_view_an_edited_contact()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 14,
+            "name": "@edit"
+          }
+        ]
+      },
+      {
+        "line": 4,
+        "name": "User should be Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 2047295600,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "user goes to the login page",
+            "match": {
+              "location": "EditContact.user_goes_to_the_login_page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1122316000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "user enters username and password",
+            "match": {
+              "location": "EditContact.user_enters_username_and_password()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1219003399,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "user should login",
+            "match": {
+              "location": "EditContact.user_should_login()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 20,
+        "name": "User does not edit any fields",
+        "description": "",
+        "id": "edit-a-contact;user-does-not-edit-any-fields",
+        "after": [
+          {
+            "result": {
+              "duration": 33700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "CreateContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 14700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "RecoveryContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 10699,
+              "status": "passed"
+            },
+            "match": {
+              "location": "EditContact.browserClose()"
+            }
+          },
+          {
+            "result": {
+              "duration": 14000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "DeleteContact.browserClose()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 9034479500,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "user does not edit any field and clicks on save",
+            "match": {
+              "location": "EditContact.user_does_not_edit_any_field_and_clicks_on_save()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 614143600,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "user should view an non edited contact",
+            "match": {
+              "location": "EditContact.user_should_view_an_non_edited_contact()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 7951113400,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "user does not edit any field and clicks on cancel",
+            "match": {
+              "location": "EditContact.user_does_not_edit_any_field_and_clicks_on_cancel()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 116524600,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "user should see an non edited contact",
+            "match": {
+              "location": "EditContact.user_should_see_an_non_edited_contact()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 19,
+            "name": "@edit"
+          }
+        ]
+      }
+    ],
+    "name": "Edit a contact",
+    "description": "Description: This feature will test editing a contact functionality",
+    "id": "edit-a-contact",
+    "keyword": "Feature",
+    "uri": "src/test/resources/Feature/EditContact.feature"
+  }
+]

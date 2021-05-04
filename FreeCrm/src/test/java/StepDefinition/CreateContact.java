@@ -1,26 +1,18 @@
 package StepDefinition;
 
-import static org.testng.Assert.assertFalse;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
-import org.apache.commons.math3.util.Precision;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Ignore;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import POM.ContactModulePOM;
@@ -88,6 +80,7 @@ public class CreateContact {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText("gopal Krishna")));
 		assert driver.findElement(By.linkText("gopal Krishna")).isDisplayed();
+		
 	}
 
 	@Test(priority = 3)
@@ -108,6 +101,7 @@ public class CreateContact {
 	@Then("^user should see see a error message$")
 	public void user_should_see_see_a_error_message() throws Throwable {
 		assert driver.findElement(By.xpath("//span[contains(text(),'The field Last Name is required')]")).isDisplayed();
+		
 	}
 
 	@Test(priority = 5)
@@ -181,6 +175,7 @@ public class CreateContact {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText("Siddarth Sai")));
 		assert driver.findElement(By.linkText("Siddarth Sai")).isDisplayed();
 		assert driver.findElement(By.linkText("Manoj Mummidi")).isDisplayed();
+		
 
 	}
 
@@ -270,9 +265,9 @@ public class CreateContact {
 		Assert.assertNotEquals(text, "Mounika Mummidi");
 		Assert.assertNotEquals(text, "   ");
 	}
-
 	@After
 	public void browserClose() {
-		// driver.close();
+		if(this.driver!=null)
+		driver.close();
 	}
 }

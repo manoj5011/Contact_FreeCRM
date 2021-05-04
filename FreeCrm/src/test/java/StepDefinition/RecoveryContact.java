@@ -128,7 +128,8 @@ public class RecoveryContact {
 	}
 	@After
 	public void browserClose() {
-		// driver.close();
+		if(this.driver!=null)
+		   driver.close();
 	}
 
 }

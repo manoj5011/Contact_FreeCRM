@@ -36,8 +36,8 @@ public class SecurityContact {
 
 	}
 	@Test(priority=2)
-	@When("^added user ties to access a private contact$")
-	public void added_user_ties_to_access_a_private_contact() throws Throwable {
+	@When("^added user tries to access a private contact$")
+	public void added_user_tries_to_access_a_private_contact() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
@@ -84,8 +84,8 @@ public class SecurityContact {
 	}
 	
 	@Test(priority=5)
-	@When("^non added user ties to access a private contact$")
-	public void non_added_user_ties_to_access_a_private_contact() throws Throwable {
+	@When("^non added user tries to access a private contact$")
+	public void non_added_user_tries_to_access_a_private_contact() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
@@ -124,8 +124,8 @@ public class SecurityContact {
 
 	}
 	@Test(priority=8)
-	@When("^user ties to access a public contact$")
-	public void user_ties_to_access_a_public_contact() throws Throwable {
+	@When("^user tries to access a public contact$")
+	public void user_tries_to_access_a_public_contact() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
 		ContactModulePOM cm = PageFactory.initElements(driver, ContactModulePOM.class);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));

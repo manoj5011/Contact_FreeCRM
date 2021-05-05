@@ -18,14 +18,19 @@ import cucumber.api.java.en.When;
 
 public class SecurityContact {
 	WebDriver driver;
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 * To login into website as a added user.
+	 */
 	@Test(priority=1)
 	@Given("^added user logs into the page$")
 	public void added_user_logs_into_the_page() throws Throwable {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		LoginPagePOM lp = PageFactory.initElements(driver, LoginPagePOM.class);
@@ -35,6 +40,10 @@ public class SecurityContact {
 		lp.loginButton();
 
 	}
+	/**
+	 * @throws Throwable
+	 * To open the contacts module and access the private contact.
+	 */
 	@Test(priority=2)
 	@When("^added user tries to access a private contact$")
 	public void added_user_tries_to_access_a_private_contact() throws Throwable {
@@ -44,6 +53,10 @@ public class SecurityContact {
 		cm.contactModule();
 	}
     
+	/**
+	 * @throws Throwable
+	 * Asserts if a added user is able to view/access/edit/delete the private contact.
+	 */
 	@Test(priority=3)
 	@Then("^user should be able to view/access/edit/delete the contact$")
 	public void user_should_be_able_to_view_access_edit_delete_the_contact() throws Throwable {
@@ -66,14 +79,19 @@ public class SecurityContact {
     	assert driver.findElement(By.xpath("//button[normalize-space()='Delete']")).isDisplayed();
 	}
 	
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 * To login into website as a non added user.
+	 */
 	@Test(priority=4)
 	@Given("^non added user logs into the page$")
 	public void non_added_user_logs_into_the_page() throws Throwable {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		LoginPagePOM lp = PageFactory.initElements(driver, LoginPagePOM.class);
@@ -83,6 +101,10 @@ public class SecurityContact {
 		lp.loginButton();
 	}
 	
+	/**
+	 * @throws Throwable
+	 * To open the contacts module and access the private contact.
+	 */
 	@Test(priority=5)
 	@When("^non added user tries to access a private contact$")
 	public void non_added_user_tries_to_access_a_private_contact() throws Throwable {
@@ -92,6 +114,10 @@ public class SecurityContact {
 		cm.contactModule();
 	}
     
+	/**
+	 * @throws Throwable
+	 *  Asserts if a non added user is able to view the private contact.
+	 */
 	@Test(priority=6)
 	@Then("^user should not be able to view the contact$")
 	public void user_should_not_be_able_to_view_access_edit_delete_the_contact() throws Throwable {
@@ -106,14 +132,19 @@ public class SecurityContact {
 	   
 	}
 	
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 * To login into website.
+	 */
 	@Test(priority=7)
 	@Given("^user logs into the page$")
 	public void user_logs_into_the_page() throws Throwable {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		LoginPagePOM lp = PageFactory.initElements(driver, LoginPagePOM.class);
@@ -123,6 +154,10 @@ public class SecurityContact {
 		lp.loginButton();
 
 	}
+	/**
+	 * @throws Throwable
+	 * To open the contacts module and access the public contact.
+	 */
 	@Test(priority=8)
 	@When("^user tries to access a public contact$")
 	public void user_tries_to_access_a_public_contact() throws Throwable {
@@ -133,6 +168,10 @@ public class SecurityContact {
 	 
 	}
     
+	/**
+	 * @throws Throwable
+	 * Asserts if a user is able to view/access/edit/delete the public contact.
+	 */
 	@Test(priority=9)
 	@Then("^all user should be able to view/access/edit/delete the contact$")
 	public void all_user_should_be_able_to_view_access_edit_delete_the_contact() throws Throwable {
@@ -154,9 +193,12 @@ public class SecurityContact {
     	assert driver.findElement(By.xpath("//button[normalize-space()='Delete']")).isDisplayed();
 	  
 	}
+	/**
+	 * To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if(this.driver!=null)
+		if(this.driver!=null)//if condition is added to ensure that after does not run when this feature file is not called.
 		   driver.close();
 	}
 }

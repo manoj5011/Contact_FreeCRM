@@ -21,18 +21,26 @@ public class FilterContact {
 	WebDriver driver;
 	String contact1, contact2, contact3, deleteContact;
 
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 */
 	@Test
 	@Given("^user directs to the login page$")
 	public void user_directs_to_the_login_page() throws Throwable {
 
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 	}
 
+	/**
+	 * @throws Throwable
+	 * To login the web page with email and password.
+	 */
 	@Test
 	@When("^user enters username and password in their respective fields$")
 	public void user_enters_username_and_password_in_their_respective_fields() throws Throwable {
@@ -44,6 +52,10 @@ public class FilterContact {
 		lp.loginButton();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the login has been done or not.
+	 */
 	@Test
 	@Then("^user should login and see home page$")
 	public void user_should_login_and_see_home_page() throws Throwable {
@@ -53,6 +65,10 @@ public class FilterContact {
 		assert driver.findElement(By.xpath("//span[contains(text(),'Log Out')]")).isDisplayed();
 	}
 
+	/**
+	 * @throws Throwable
+	 * TO filter a contact with a valid condition.
+	 */
 	@Test(priority = 1)
 	@When("^user filters a contact with valid condition$")
 	public void user_filters_a_contact_with_valid_condition() throws Throwable {
@@ -70,6 +86,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contacts are displayed according to the valid condition.
+	 */
 	@Test(priority = 2)
 	@Then("^the contacts which satisfy the condition should be displayed$")
 	public void the_contacts_which_satisfy_the_condition_should_be_displayed() throws Throwable {
@@ -81,6 +101,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To filter a contact with an invalid condition.
+	 */
 	@Test(priority = 3)
 	@When("^user filters a contact with invalid condition$")
 	public void user_filters_a_contact_with_invalid_condition() throws Throwable {
@@ -97,6 +121,10 @@ public class FilterContact {
 		cm.filterSearch();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if a message "no records found" is displayed for the invalid condition.
+	 */
 	@Test(priority = 4)
 	@Then("^no contacts should be displayed$")
 	public void no_contacts_should_be_displayed() throws Throwable {
@@ -108,6 +136,10 @@ public class FilterContact {
 		Assert.assertEquals(msg, "No records found");
 	}
 
+	/**
+	 * @throws Throwable
+	 * To filter contacts with multiple valid filters.
+	 */
 	@Test(priority = 5)
 	@When("^user filters a contact with valid conditions$")
 	public void user_filters_a_contact_with_valid_conditions() throws Throwable {
@@ -137,6 +169,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if contacts satisfying multiple valid conditions are being displayed or not.
+	 */
 	@Test(priority = 6)
 	@Then("^the contacts which satisfy the conditions should be displayed$")
 	public void the_contacts_which_satisfy_the_conditions_should_be_displayed() throws Throwable {
@@ -147,6 +183,10 @@ public class FilterContact {
 		Assert.assertNotEquals(msg, "No records found");
 	}
 
+	/**
+	 * @throws Throwable
+	 * TO filter contacts with multiple invalid conditions.
+	 */
 	@Test(priority = 7)
 	@When("^user filters a contact with invalid conditions$")
 	public void user_filters_a_contact_with_invalid_conditions() throws Throwable {
@@ -176,6 +216,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if message "no records found" is being displayed or not for multiple invalid conditions 
+	 */
 	@Test(priority = 8)
 	@Then("^user should not see any contacts$")
 	public void user_should_not_see_any_contacts() throws Throwable {
@@ -187,6 +231,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To filter contacts with a filter condition and then click on clear filter.
+	 */
 	@Test(priority = 9)
 	@When("^user tries to filter contacts with a condition and then clicks on clear filter$")
 	public void user_tries_to_filter_contacts_with_a_condition_and_then_clicks_on_clear_filter() throws Throwable {
@@ -211,6 +259,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if all the contacts are being displayed or not after clearing the filter condition.
+	 */
 	@Test(priority = 10)
 	@Then("^all the contacts should be displayed$")
 	public void all_the_contacts_should_be_displayed() throws Throwable {
@@ -229,6 +281,10 @@ public class FilterContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To delete contacts that are filtered by a condition.
+	 */
 	@Test(priority = 11)
 	@When("^user filters contacts with valid condition and then delete it$")
 	public void user_filters_contacts_with_valid_condition_and_then_delete_it() throws Throwable {
@@ -252,6 +308,10 @@ public class FilterContact {
 		cm.deleteButtonAlert();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact is deleted and has moved to the bin.
+	 */
 	@Test(priority = 12)
 	@Then("^contacts should be displayed in the bin$")
 	public void contacts_should_be_displayed_in_the_bin() throws Throwable {
@@ -261,7 +321,6 @@ public class FilterContact {
 				.visibilityOfAllElementsLocatedBy(By.xpath("//p[normalize-space()='No records found']")));
 		String msg = driver.findElement(By.xpath("//p[normalize-space()='No records found']")).getText();
 		Assert.assertEquals(msg, "No records found");
-
 		// Thread.sleep(5000);
 		cm.recoveryBinButton();
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='main-content'] a:nth-child(1)")));
@@ -273,9 +332,12 @@ public class FilterContact {
 		Assert.assertEquals(deleteContact, deletedContact);
 	}
 
+	/**
+	 * To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if (this.driver != null)
+		if (this.driver != null)//if condition is added to ensure that after does not run when this feature file is not called.
 			driver.close();
 	}
 

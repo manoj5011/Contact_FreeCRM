@@ -1,6 +1,7 @@
 package StepDefinition;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,17 +22,25 @@ public class EditContact {
 	WebDriver driver;
 	String name, emailID, phoneNumber;
 
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 */
 	@Test
 	@Given("^user goes to the login page$")
 	public void user_goes_to_the_login_page() throws Throwable {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 	}
 
+	/**
+	 * @throws Throwable
+	 * To login the web page with email and password.
+	 */
 	@Test
 	@When("^user enters username and password$")
 	public void user_enters_username_and_password() throws Throwable {
@@ -43,6 +52,10 @@ public class EditContact {
 		lp.loginButton();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the login has been done or not.
+	 */
 	@Test
 	@Then("^user should login$")
 	public void user_should_login() throws Throwable {
@@ -53,6 +66,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To edit a required field of a contact and click on save.
+	 */
 	@Test(priority = 1)
 	@When("^user edits required fields and clicks on save$")
 	public void user_edits_required_fields_and_clicks_on_save() throws Throwable {
@@ -73,6 +90,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact has been edited by editing required fields and display it on the contact dash board.
+	 */
 	@Test(priority = 2)
 	@Then("^user should see an edited contact$")
 	public void user_should_see_an_edited_contact() throws Throwable {
@@ -81,6 +102,10 @@ public class EditContact {
 		assert driver.findElement(By.linkText("Ashok Sai")).isDisplayed();
 	}
 
+	/**
+	 * @throws Throwable
+	 * To edit non required filed of a contact and click on save.
+	 */
 	@Test(priority = 3)
 	@When("^user edits non required fields and clicks on save$")
 	public void user_edits_non_required_fields_and_clicks_on_save() throws Throwable {
@@ -103,6 +128,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact has been edited by editing non required fields and display it on the contact dash board.
+	 */
 	@Test(priority = 4)
 	@Then("^user should view an edited contact$")
 	public void user_should_view_an_edited_contact() throws Throwable {
@@ -118,6 +147,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To not edit any field while editing a contact and click on save.
+	 */
 	@Test(priority = 5)
 	@When("^user does not edit any field and clicks on save$")
 	public void user_does_not_edit_any_field_and_clicks_on_save() throws Throwable {
@@ -139,6 +172,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if there is any change in the contact without editing any filed an clicking on save.
+	 */
 	@Test(priority = 6)
 	@Then("^user should view an non edited contact$")
 	public void user_should_view_an_non_edited_contact() throws Throwable {
@@ -157,6 +194,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * To not edit any field while editing a contact and click on cancel.
+	 */
 	@Test(priority = 7)
 	@When("^user does not edit any field and clicks on cancel$")
 	public void user_does_not_edit_any_field_and_clicks_on_cancel() throws Throwable {
@@ -178,6 +219,10 @@ public class EditContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if there is any change in the contact without editing any filed an clicking on cancel.
+	 */
 	@Test(priority = 8)
 	@Then("^user should see an non edited contact$")
 	public void user_should_see_an_non_edited_contact() throws Throwable {
@@ -196,9 +241,12 @@ public class EditContact {
 
 	}
 
+	/**
+	 *  To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if (this.driver != null)
+		if (this.driver != null)//if condition is added to ensure that after does not run when this feature file is not called.
 			driver.close();
 	}
 

@@ -24,38 +24,54 @@ import cucumber.api.java.en.When;
 
 public class CreateContact {
 	WebDriver driver;
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 */
 	@Test
 	@Given("^user navigates to the login page$")
 	public void user_navigates_to_the_login_page() throws Throwable {
 
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
-									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
-		driver.manage().window().maximize();// To max the browser.
+									// overridden and overridden methods in chrome drive
+		driver.get("https://ui.cogmento.com/");
+		driver.manage().window().maximize();// To max the size of browser.
 	}
 
+	/**
+	 * @throws Throwable
+	 * To login the web page with email and password.
+	 */
 	@Test
 	@When("^user enters username and password in the fields$")
 	public void user_enters_username_and_password_in_the_fields() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		LoginPagePOM lp = PageFactory.initElements(driver, LoginPagePOM.class);
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("email")));
-		lp.inputEmail("saisiddarthmanoj@gmail.com");
+		LoginPagePOM lp = PageFactory.initElements(driver, LoginPagePOM.class);//Created an object for loginPagePom class. 
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.name("email")));//Added wait in order to ensure that the page loads and email field is visible. 
+		lp.inputEmail("saisiddarthmanoj@gmail.com"); 
 		lp.inputPassword("Manoj1999");
 		lp.loginButton();
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the login has been done or not.
+	 */
 	@Test
 	@Then("^user should login and should be on home page$")
 	public void user_should_login_and_should_be_on_home_page() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 30);//Created an object for implicit wait. A implicit wait of 30 seconds is given.
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
 		assert driver.findElement(By.xpath("//span[contains(text(),'Contacts')]")).isDisplayed();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Created contact with first name, last name and clicked on save.
+	 */
 	@Test(priority = 1)
 	@When("^user enters first name, last name and clicks on save$")
 	public void user_enters_first_name_last_name_and_clicks_on_save() throws Throwable {
@@ -69,11 +85,15 @@ public class CreateContact {
 		cm.firstName("gopal");
 		cm.lastName("Krishna");
 		cm.saveButton();
-		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contacts')]")));
 		Thread.sleep(5000);
 		cm.contactModule();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the created contact done by using above method
+	 * is visible on the contact dash board or not. 
+	 */
 	@Test(priority = 2)
 	@Then("^user should see the contact on the dashboard$")
 	public void user_should_see_the_contact_on_the_dashboard() throws Throwable {
@@ -83,6 +103,11 @@ public class CreateContact {
 		
 	}
 
+	/**
+	 * @param firstname
+	 * @throws Throwable
+	 * Tried to create a contact by entering on one of the required field and clicked on save.
+	 */
 	@Test(priority = 3)
 	@When("^user user enters ([^\\\"]*) and clicks on save$")
 	public void user_user_enters_first_name_and_clicks_on_save(String firstname) throws Throwable {
@@ -97,6 +122,10 @@ public class CreateContact {
 		cm.saveButton();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if a contact can be created by only entering one required field.
+	 */
 	@Test(priority = 4)
 	@Then("^user should see see a error message$")
 	public void user_should_see_see_a_error_message() throws Throwable {
@@ -104,6 +133,11 @@ public class CreateContact {
 		
 	}
 
+	/**
+	 * @throws Throwable
+	 * Tried to create a contact with valid details like name, email, address, phone number, birthday.
+	 * Data here is imported from the xlsx file using Apache POI.
+	 */
 	@Test(priority = 5)
 	@When("^user enters valid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save$")
 	public void user_enters_valid_first_name_last_name_email_id_phone_number_address_street_address_city_address_state_address_code_address_country_birthday_day_birthday_month_birthday_year_and_click_on_save()
@@ -154,12 +188,11 @@ public class CreateContact {
 			cm.addressCityField(addressCity);
 			cm.addressStateField(addressState);
 			driver.findElement(By.xpath("//input[@placeholder='Post Code']")).sendKeys(addresscodeUpdated);
-			// cm.addressCountryField(addressCountry);
 			cm.birthdayDayField(birthdayDayUpdated);
 			cm.birthdayMonthField();
 			wait.until(ExpectedConditions
 					.elementToBeClickable(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")));
-			driver.findElement(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")).click();
+			driver.findElement(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")).click();//Dynamic xpath is used as the input months may change.  
 			cm.birthdayYearField(birthdayYearUpdated);
 			cm.saveButton();
 			Thread.sleep(5000);
@@ -168,6 +201,10 @@ public class CreateContact {
 		}
 	}
 
+	/**
+	 * @throws Throwable
+	 * Assets if a contact is being created by valid data or not.
+	 */
 	@Test(priority = 6)
 	@Then("^user should see the contact on the contacts dashboard$")
 	public void user_should_see_the_contact_on_the_contacts_dashboard() throws Throwable {
@@ -179,6 +216,10 @@ public class CreateContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Tried to create a contact with invalid details like name, email, address, phone number, birthday.
+	 */
 	@Test(priority = 7)
 	@When("^user enters invalid first name,last name,email id,phone number,address_street,address_city,address_state,address_code,address_country,birthday_day,birthday_month,birthday_year and click on save$")
 	public void user_enters_invalid_first_name_last_name_email_id_phone_number_address_street_address_city_address_state_address_code_address_country_birthday_day_birthday_month_birthday_year_and_click_on_save()
@@ -209,6 +250,10 @@ public class CreateContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Assets if a contact is being created by invalid data or not.
+	 */
 	@Test(priority = 8)
 	@Then("^user should not see the contact on the contacts dashboard$")
 	public void user_should_not_see_the_contact_on_the_contacts_dashboard() throws Throwable {
@@ -220,6 +265,17 @@ public class CreateContact {
 		Assert.assertNotEquals(text, "12345 $575^%%$#");
 	}
 
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param birthdayDay
+	 * @param birthdayMonth
+	 * @param birthdayYear
+	 * @throws Throwable
+	 * Tries to create a contact by giving the data and then clicks on cancel.
+	 * Data is taken from scenario outline examples.
+	 */
 	@Test(priority = 9)
 	@When("^user gives data ([^\\\"]*),([^\\\"]*),([^\\\"]*),([^\\\"]*),([^\\\"]*),([^\\\"]*) and clicks on cancel$")
 	public void user_gives_data_first_name_last_name_email_birthday_day_birthday_month_birthday_year_and_clicks_on_cancel(
@@ -240,7 +296,7 @@ public class CreateContact {
 		if (birthdayMonth == "January" || birthdayMonth == "February" || birthdayMonth == "March"
 				|| birthdayMonth == "April" || birthdayMonth == "May" || birthdayMonth == "June"
 				|| birthdayMonth == "July" || birthdayMonth == "August" || birthdayMonth == "September"
-				|| birthdayMonth == "October" || birthdayMonth == "November" || birthdayMonth == "December") {
+				|| birthdayMonth == "October" || birthdayMonth == "November" || birthdayMonth == "December") {//If condition is added to ensure that it doesn't run when birthday month is empty.
 			wait.until(ExpectedConditions
 					.elementToBeClickable(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")));
 			driver.findElement(By.xpath("//span[normalize-space()='" + birthdayMonth + "']")).click();
@@ -249,6 +305,10 @@ public class CreateContact {
 		cm.cancelButtonCreate();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if a contact is being created after entering the data and clicks on cancel.
+	 */
 	@Test(priority = 10)
 	@Then("^user should not see the contacts$")
 	public void user_should_not_see_the_contacts() throws Throwable {
@@ -265,9 +325,12 @@ public class CreateContact {
 		Assert.assertNotEquals(text, "Mounika Mummidi");
 		Assert.assertNotEquals(text, "   ");
 	}
+	/**
+	 * To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if(this.driver!=null)
+		if(this.driver!=null)//if condition is added to ensure that after does not run when this feature file is not called.
 		driver.close();
 	}
 }

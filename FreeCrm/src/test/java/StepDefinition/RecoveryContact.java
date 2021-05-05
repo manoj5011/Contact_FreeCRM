@@ -21,6 +21,10 @@ public class RecoveryContact {
 	WebDriver driver;
 	String recoverContact1,recoverContact2;
 
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 */
 	@Test
 	@Given("^user is on the login page$")
 	public void user_is_on_the_login_page() throws Throwable {
@@ -32,6 +36,10 @@ public class RecoveryContact {
 		driver.manage().window().maximize();// To max the browser.
 	}
 
+	/**
+	 * @throws Throwable
+	 * To login the web page with email and password.
+	 */
 	@Test
 	@When("^user enters username and password in login page of freeCRM$")
 	public void user_enters_username_and_password_in_login_page_of_freeCRM() throws Throwable {
@@ -43,6 +51,10 @@ public class RecoveryContact {
 		lp.loginButton();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the login has been done or not.
+	 */
 	@Test
 	@Then("^user should login and see the home page of freeCRM$")
 	public void user_should_login_and_see_the_home_page_of_freeCRM() throws Throwable {
@@ -52,6 +64,10 @@ public class RecoveryContact {
 		assert driver.findElement(By.xpath("//span[contains(text(),'Log Out')]")).isDisplayed();
 	}
 
+	/**
+	 * @throws Throwable
+	 * To recover a contact from the trash bin.
+	 */
 	@Test(priority = 1)
 	@When("^user tries to recover a contact from the bin$")
 	public void user_tries_to_recover_a_contact_from_the_bin() throws Throwable {
@@ -75,6 +91,10 @@ public class RecoveryContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact has been recovered from the bin or not.
+	 */
 	@Test(priority = 2)
 	@Then("^contact should be visible on dashboard$")
 	public void contact_should_be_visible_on_dashboard() throws Throwable {
@@ -86,6 +106,10 @@ public class RecoveryContact {
 		Assert.assertEquals(DashboardContact1, recoverContact1);
 	}
 
+	/**
+	 * @throws Throwable
+	 * To recover multiple contact from the trash bin.
+	 */
 	@Test(priority = 3)
 	@When("^user tries to recover multiple contacts from the bin$")
 	public void user_tries_to_recover_multiple_contacts_from_the_bin() throws Throwable {
@@ -111,6 +135,10 @@ public class RecoveryContact {
 		cm.contactModule();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if multiple contacts have been recovered from the bin or not.
+	 */
 	@Test(priority = 4)
 	@Then("^contacts should be visible on dashboard$")
 	public void contacts_should_be_visible_on_dashboard() throws Throwable {
@@ -126,9 +154,12 @@ public class RecoveryContact {
 		Assert.assertEquals(DashboardContact2, recoverContact1);
 
 	}
+	/**
+	 * To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if(this.driver!=null)
+		if(this.driver!=null)//if condition is added to ensure that after does not run when this feature file is not called.
 		   driver.close();
 	}
 

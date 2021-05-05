@@ -21,18 +21,26 @@ public class DeleteContact {
 	WebDriver driver;
 	String contact1, contact2, contact3,contact4,contact5;
 
+	/**
+	 * @throws Throwable
+	 * To set the chrome driver and to open the web page.
+	 */
 	@Test
 	@Given("^user goes to the login page of freeCRM$")
 	public void user_goes_to_the_login_page_of_freeCRM() throws Throwable {
 
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");// To open Chrome through driver.
+				"C:\\Selenium software\\chromedriver_win32 (1)\\chromedriver.exe");
 		driver = new ChromeDriver();// to create a object to use methods in the interface that are not
 									// overidden and overidden methods in chrome drive
-		driver.get("https://ui.cogmento.com/");// To open the website
+		driver.get("https://ui.cogmento.com/");
 		driver.manage().window().maximize();// To max the browser.
 	}
 
+	/**
+	 * @throws Throwable
+	 * To login the web page with email and password.
+	 */
 	@Test
 	@When("^user enters username and password in the login page$")
 	public void user_enters_username_and_password_in_the_login_page() throws Throwable {
@@ -45,6 +53,10 @@ public class DeleteContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the login has been done or not.
+	 */
 	@Test
 	@Then("^user should login and see logout option$")
 	public void user_should_login_and_see_logout_option() throws Throwable {
@@ -54,6 +66,10 @@ public class DeleteContact {
 		assert driver.findElement(By.xpath("//span[contains(text(),'Log Out')]")).isDisplayed();
 	}
 
+	/**
+	 * @throws Throwable
+	 * To delete a particular contact from the contact dash board.
+	 */
 	@Test(priority = 1)
 	@When("^user deletes a particular contact$")
 	public void user_deletes_a_particular_contact() throws Throwable {
@@ -69,6 +85,10 @@ public class DeleteContact {
 		cm.deleteButtonAlert();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact is deleted by checking in the trash bin.
+	 */
 	@Test(priority = 2)
 	@Then("^contact should move to the bin$")
 	public void contact_should_move_to_the_bin() throws Throwable {
@@ -85,6 +105,10 @@ public class DeleteContact {
 		Assert.assertEquals(deleteContact1, contact1);
 	}
 
+	/**
+	 * @throws Throwable
+	 * To delete a multiple contacts from the contact dash board.
+	 */
 	@Test(priority = 3)
 	@When("^user selects multiple contacts and clicks on delete$")
 	public void user_selects_multiple_contacts_and_clicks_on_delete() throws Throwable {
@@ -106,6 +130,10 @@ public class DeleteContact {
 		cm.deleteButtonAlert();
 	}
 
+	/**
+	 * @throws Throwable
+	 *  Asserts if multiple contacts are deleted by checking in the trash bin.
+	 */
 	@Test(priority = 4)
 	@Then("^contacts should move to the bin$")
 	public void contacts_should_move_to_the_bin() throws Throwable {
@@ -127,6 +155,10 @@ public class DeleteContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Tries to delete a contact and clicks on cancel.
+	 */
 	@Test(priority = 5)
 	@When("^user selects to delete a contact and then click on cancel$")
 	public void user_selects_to_delete_a_contact_and_then_click_on_cancel() throws Throwable {
@@ -142,6 +174,10 @@ public class DeleteContact {
 		cm.cancelDeleteAlert();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if the contact is deleted by checking in the trash bin even after clicking on cancel in the delete alert.
+	 */
 	@Test(priority = 6)
 	@Then("^contact should not move to the bin$")
 	public void contact_should_not_move_to_the_bin() throws Throwable {
@@ -159,6 +195,10 @@ public class DeleteContact {
 
 	}
 
+	/**
+	 * @throws Throwable
+	 * Tries to delete multiple contacts and clicks on cancel.
+	 */
 	@Test(priority = 7)
 	@When("^user selects multiple contacts to delete and then click on cancel$")
 	public void user_selects_multiple_contacts_to_delete_and_then_click_on_cancel() throws Throwable {
@@ -180,6 +220,10 @@ public class DeleteContact {
 		cm.cancelDeleteAlert();
 	}
 
+	/**
+	 * @throws Throwable
+	 * Asserts if multiple contacts are deleted by checking in the trash bin even after clicking on cancel in the delete alert.
+	 */
 	@Test(priority = 8)
 	@Then("^contacts should not move to the bin$")
 	public void contacts_should_not_move_to_the_bin() throws Throwable {
@@ -201,9 +245,12 @@ public class DeleteContact {
 
 	}
 
+	/**
+	 * To close the browser after each scenario
+	 */
 	@After
 	public void browserClose() {
-		if(this.driver!=null)
+		if(this.driver!=null)//if condition is added to ensure that after does not run when this feature file is not called.
 		   driver.close();
 	}
 

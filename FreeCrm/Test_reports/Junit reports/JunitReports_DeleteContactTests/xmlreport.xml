@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="4" time="61.30009">
+<testcase classname="Delete a contact" name="User deletes a particular contact" time="13.690526">
+<system-out><![CDATA[Given user goes to the login page of freeCRM................................passed
+When user enters username and password in the login page....................passed
+Then user should login and see logout option................................passed
+When user deletes a particular contact......................................passed
+Then contact should move to the bin.........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Delete a contact" name="User deletes multiple contacts" time="18.836118">
+<system-out><![CDATA[Given user goes to the login page of freeCRM................................passed
+When user enters username and password in the login page....................passed
+Then user should login and see logout option................................passed
+When user selects multiple contacts and clicks on delete....................passed
+Then contacts should move to the bin........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Delete a contact" name="user tries to delete a contact then clicks on cancel" time="11.804524">
+<system-out><![CDATA[Given user goes to the login page of freeCRM................................passed
+When user enters username and password in the login page....................passed
+Then user should login and see logout option................................passed
+When user selects to delete a contact and then click on cancel..............passed
+Then contact should not move to the bin.....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Delete a contact" name="user tries to delete multiple contact then clicks on cancel" time="16.968922">
+<system-out><![CDATA[Given user goes to the login page of freeCRM................................passed
+When user enters username and password in the login page....................passed
+Then user should login and see logout option................................passed
+When user selects multiple contacts to delete and then click on cancel......passed
+Then contacts should not move to the bin....................................passed
+]]></system-out>
+</testcase>
+</testsuite>

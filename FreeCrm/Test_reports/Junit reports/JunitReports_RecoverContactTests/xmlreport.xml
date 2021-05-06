@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="42.828599">
+<testcase classname="Recover contacts" name="user tries to recover a contact" time="21.9784">
+<system-out><![CDATA[Given user is on the login page.............................................passed
+When user enters username and password in login page of freeCRM.............passed
+Then user should login and see the home page of freeCRM.....................passed
+When user tries to recover a contact from the bin...........................passed
+Then contact should be visible on dashboard.................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Recover contacts" name="user tries to recover multiple contacts" time="20.850199">
+<system-out><![CDATA[Given user is on the login page.............................................passed
+When user enters username and password in login page of freeCRM.............passed
+Then user should login and see the home page of freeCRM.....................passed
+When user tries to recover multiple contacts from the bin...................passed
+Then contacts should be visible on dashboard................................passed
+]]></system-out>
+</testcase>
+</testsuite>

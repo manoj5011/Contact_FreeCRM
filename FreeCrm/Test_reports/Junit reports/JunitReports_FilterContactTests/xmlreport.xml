@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="6" time="52.098684">
+<testcase classname="filter contacts" name="User filters the contacts with single valid filter" time="7.789384">
+<system-out><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user filters a contact with valid condition............................passed
+Then the contacts which satisfy the condition should be displayed...........passed
+]]></system-out>
+</testcase>
+<testcase classname="filter contacts" name="User filters the contacts with single invalid filter" time="8.181315">
+<system-out><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user filters a contact with invalid condition..........................passed
+Then no contacts should be displayed........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="filter contacts" name="User filters the contacts with multiple valid filter" time="6.79986">
+<failure message="java.lang.AssertionError: null&#13;&#10;&#9;at org.testng.Assert.fail(Assert.java:96)&#13;&#10;&#9;at org.testng.Assert.assertNotEquals(Assert.java:1157)&#13;&#10;&#9;at org.testng.Assert.assertNotEquals(Assert.java:1162)&#13;&#10;&#9;at StepDefinition.FilterContact.the_contacts_which_satisfy_the_conditions_should_be_displayed(FilterContact.java:147)&#13;&#10;&#9;at ✽.Then the contacts which satisfy the conditions should be displayed(src/test/resources/Feature/FilterContact.feature:22)&#13;&#10;"><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user filters a contact with valid conditions...........................passed
+Then the contacts which satisfy the conditions should be displayed..........failed
+
+StackTrace:
+java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.assertNotEquals(Assert.java:1157)
+	at org.testng.Assert.assertNotEquals(Assert.java:1162)
+	at StepDefinition.FilterContact.the_contacts_which_satisfy_the_conditions_should_be_displayed(FilterContact.java:147)
+	at ✽.Then the contacts which satisfy the conditions should be displayed(src/test/resources/Feature/FilterContact.feature:22)
+]]></failure>
+</testcase>
+<testcase classname="filter contacts" name="User filters the contacts with multiple invalid filter" time="7.110267">
+<system-out><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user filters a contact with invalid conditions.........................passed
+Then user should not see any contacts.......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="filter contacts" name="user adds filter condition and clicks on clear filter" time="10.599413">
+<system-out><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user tries to filter contacts with a condition and then clicks on clear filter.passed
+Then all the contacts should be displayed...................................passed
+]]></system-out>
+</testcase>
+<testcase classname="filter contacts" name="user filters a contact and then clicks on actions" time="11.618445">
+<system-out><![CDATA[Given user directs to the login page........................................passed
+When user enters username and password in their respective fields...........passed
+Then user should login and see home page....................................passed
+When user filters contacts with valid condition and then delete it..........passed
+Then contacts should be displayed in the bin................................passed
+]]></system-out>
+</testcase>
+</testsuite>

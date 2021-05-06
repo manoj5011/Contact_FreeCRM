@@ -6,6 +6,20 @@
 	<artifactId>FreeCrm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FreeCRM</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<parallel>Feature</parallel>
+					<threadCount>4</threadCount>
+					<perCoreThreadCount>True</perCoreThreadCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -45,7 +59,7 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.6</version>
+			<version>5.7.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

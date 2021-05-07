@@ -13,10 +13,27 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M4</version>
 				<configuration>
-					<parallel>Feature</parallel>
+					<parallel>Methods</parallel>
 					<threadCount>4</threadCount>
 					<perCoreThreadCount>True</perCoreThreadCount>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<parallel>Methods</parallel>
+							<useUnlimitedThreads>true</useUnlimitedThreads>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
